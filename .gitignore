@@ -16,6 +16,8 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+Weather App/Keys
+Pods/
 
 ## Other
 *.moved-aside
