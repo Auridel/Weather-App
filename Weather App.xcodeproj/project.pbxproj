@@ -20,6 +20,7 @@
 		F81CEB4427629A950079AB5A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB4327629A950079AB5A /* Models.swift */; };
 		F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB452762A0D60079AB5A /* ResponseTypes.swift */; };
 		F8501AF327668A1100E44E1C /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = F8501AF227668A1100E44E1C /* cities.json */; };
+		F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8501AF427668CC100E44E1C /* StorageManager.swift */; };
 		F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */; };
 		F882BF84276646350075E3D1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF83276646350075E3D1 /* Extensions.swift */; };
 		F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF872766476C0075E3D1 /* GradientLayer.swift */; };
@@ -48,6 +49,7 @@
 		F81CEB4327629A950079AB5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F81CEB452762A0D60079AB5A /* ResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTypes.swift; sourceTree = "<group>"; };
 		F8501AF227668A1100E44E1C /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		F8501AF427668CC100E44E1C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
 		F882BF83276646350075E3D1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F882BF872766476C0075E3D1 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F81CEB41276291260079AB5A /* ApiManager.swift */,
+				F8501AF427668CC100E44E1C /* StorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				F882BF84276646350075E3D1 /* Extensions.swift in Sources */,
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
+				F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */,
 				F81CEB42276291260079AB5A /* ApiManager.swift in Sources */,
 				F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */,
 				F882BF8A27665AFB0075E3D1 /* CurrentWeatherView.swift in Sources */,

@@ -13,7 +13,7 @@ protocol LocationPickerViewControllerDelegate: AnyObject {
 
 class LocationPickerViewController: UIViewController {
     
-    private var searchResults = [String]()
+    private var searchResults = [CityData]()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -64,7 +64,7 @@ class LocationPickerViewController: UIViewController {
                                  height: view.height - searchBar.height)
     }
     
-    private func updateSearchResults(with results: [String]) {
+    private func updateSearchResults(with results: [CityData]) {
         searchResults = results
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -79,7 +79,10 @@ class LocationPickerViewController: UIViewController {
 extension LocationPickerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // TODO: implement search
+        // TODO: Debounce next
+        let results = StorageManager.shared.findCityBy(namePrefix: searchText)
+        print(results)
+        updateSearchResults(with: results)
     }
 }
 
@@ -94,7 +97,7 @@ extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier,
                                                  for: indexPath) as! LocationTableViewCell
-        cell.configure(with: searchResults[indexPath.row])
+        cell.configure(with: searchResults[indexPath.row].name)
         return cell
     }
     

@@ -7,3 +7,9 @@
 
 import Foundation
 
+struct CityData {
+    let country: String
+    let geonameid: Int
+    let name: String
+    let subcountry: String
+}

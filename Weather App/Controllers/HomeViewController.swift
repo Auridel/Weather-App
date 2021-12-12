@@ -36,6 +36,8 @@ class HomeViewController: UIViewController {
         gradientLayer.frame = view.frame
         view.layer.insertSublayer(gradientLayer, at: 0)
         
+        StorageManager.shared.getCityData()
+        
         selectedLocationView = SelectedLocationView(frame: CGRect(x: 0,
                                                                   y: 0,
                                                                   width: 0,
