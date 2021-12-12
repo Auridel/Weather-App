@@ -95,4 +95,12 @@ class CurrentWeatherView: UIView {
                                 height: 24)
     }
     
+    public func setWeatherConditions(temp: Int, conditions: String, wind: Float, humidity: Float) {
+        dateLabel.text = Utils.getCurrentDateAsHumanString()
+        tempLabel.text = "\(temp) °"
+        skyConditionLabel.text = conditions
+        windView.configure(for: .wind, value: wind)
+        humidityView.configure(for: .humidity, value: humidity)
+    }
+    
 }

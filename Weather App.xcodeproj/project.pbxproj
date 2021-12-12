@@ -19,11 +19,15 @@
 		F81CEB42276291260079AB5A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB41276291260079AB5A /* ApiManager.swift */; };
 		F81CEB4427629A950079AB5A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB4327629A950079AB5A /* Models.swift */; };
 		F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB452762A0D60079AB5A /* ResponseTypes.swift */; };
+		F8501AF327668A1100E44E1C /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = F8501AF227668A1100E44E1C /* cities.json */; };
 		F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */; };
 		F882BF84276646350075E3D1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF83276646350075E3D1 /* Extensions.swift */; };
 		F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF872766476C0075E3D1 /* GradientLayer.swift */; };
 		F882BF8A27665AFB0075E3D1 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */; };
 		F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */; };
+		F882BF8E276670570075E3D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8D276670570075E3D1 /* Utils.swift */; };
+		F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */; };
+		F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +47,15 @@
 		F81CEB41276291260079AB5A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F81CEB4327629A950079AB5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F81CEB452762A0D60079AB5A /* ResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTypes.swift; sourceTree = "<group>"; };
+		F8501AF227668A1100E44E1C /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
 		F882BF83276646350075E3D1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F882BF872766476C0075E3D1 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 		F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 		F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContitionView.swift; sourceTree = "<group>"; };
+		F882BF8D276670570075E3D1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
+		F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,8 @@
 				F81CEB212762874C0079AB5A /* AppDelegate.swift */,
 				F81CEB232762874C0079AB5A /* SceneDelegate.swift */,
 				F882BF83276646350075E3D1 /* Extensions.swift */,
+				F8501AF227668A1100E44E1C /* cities.json */,
+				F882BF8D276670570075E3D1 /* Utils.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -127,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F81CEB252762874C0079AB5A /* HomeViewController.swift */,
+				F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +145,7 @@
 		F81CEB3A276288430079AB5A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F882BF9127667D7F0075E3D1 /* Cells */,
 				F81CEB3B276288480079AB5A /* Storyboards */,
 				F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */,
 				F882BF872766476C0075E3D1 /* GradientLayer.swift */,
@@ -175,6 +187,14 @@
 				F81CEB3F276290DC0079AB5A /* Keys.swift */,
 			);
 			path = Keys;
+			sourceTree = "<group>";
+		};
+		F882BF9127667D7F0075E3D1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8501AF327668A1100E44E1C /* cities.json in Resources */,
 				F81CEB312762874C0079AB5A /* LaunchScreen.storyboard in Resources */,
 				F81CEB2E2762874C0079AB5A /* Assets.xcassets in Resources */,
 				F81CEB292762874C0079AB5A /* Main.storyboard in Resources */,
@@ -294,7 +315,9 @@
 			files = (
 				F81CEB2C2762874C0079AB5A /* Weather_App.xcdatamodeld in Sources */,
 				F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */,
+				F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */,
 				F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */,
+				F882BF8E276670570075E3D1 /* Utils.swift in Sources */,
 				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
 				F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */,
@@ -302,6 +325,7 @@
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
 				F81CEB42276291260079AB5A /* ApiManager.swift in Sources */,
+				F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */,
 				F882BF8A27665AFB0075E3D1 /* CurrentWeatherView.swift in Sources */,
 				F81CEB40276290DC0079AB5A /* Keys.swift in Sources */,
 				F81CEB4427629A950079AB5A /* Models.swift in Sources */,

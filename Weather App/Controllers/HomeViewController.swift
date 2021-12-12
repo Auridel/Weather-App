@@ -13,6 +13,13 @@ class HomeViewController: UIViewController {
     
     private var selectedLocationView: SelectedLocationView?
     
+    private let currentSkyCondition: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "sun")
+        return imageView
+    }()
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -39,8 +46,13 @@ class HomeViewController: UIViewController {
         }
         
         view.addSubview(scrollView)
-        scrollView.addSubview(selectedLocationView)
         
+        let gesture = UITapGestureRecognizer(target: self,
+                                          action: #selector(didTapLocation))
+        selectedLocationView.addGestureRecognizer(gesture)
+        
+        scrollView.addSubview(selectedLocationView)
+        scrollView.addSubview(currentSkyCondition)
         scrollView.addSubview(currentWeatherView)
     }
 
@@ -52,10 +64,20 @@ class HomeViewController: UIViewController {
                                              y: scrollView.safeAreaInsets.top + 16,
                                              width: scrollView.width,
                                              height: 24)
+        currentSkyCondition.frame = CGRect(x: scrollView.width / 2 - 120,
+                                           y: selectedLocationView?.bottom ?? 0 + 32,
+                                           width: 240,
+                                           height: 240)
         currentWeatherView.frame = CGRect(x: 16,
-                                          y: selectedLocationView?.bottom ?? 0 + 32,
+                                          y: currentSkyCondition.bottom + 32,
                                           width: scrollView.width - 32,
                                           height: 355)
+    }
+    
+    // MARK: Actions
+    @objc private func didTapLocation() {
+        let popupVC = LocationPickerViewController()
+        present(popupVC, animated: true)
     }
 
 }
