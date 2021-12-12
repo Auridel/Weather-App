@@ -19,6 +19,9 @@
 		F81CEB42276291260079AB5A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB41276291260079AB5A /* ApiManager.swift */; };
 		F81CEB4427629A950079AB5A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB4327629A950079AB5A /* Models.swift */; };
 		F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB452762A0D60079AB5A /* ResponseTypes.swift */; };
+		F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */; };
+		F882BF84276646350075E3D1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF83276646350075E3D1 /* Extensions.swift */; };
+		F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF872766476C0075E3D1 /* GradientLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		F81CEB41276291260079AB5A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F81CEB4327629A950079AB5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F81CEB452762A0D60079AB5A /* ResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTypes.swift; sourceTree = "<group>"; };
+		F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
+		F882BF83276646350075E3D1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F882BF872766476C0075E3D1 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 				F81CEB2D2762874C0079AB5A /* Assets.xcassets */,
 				F81CEB212762874C0079AB5A /* AppDelegate.swift */,
 				F81CEB232762874C0079AB5A /* SceneDelegate.swift */,
+				F882BF83276646350075E3D1 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				F81CEB3B276288480079AB5A /* Storyboards */,
+				F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */,
+				F882BF872766476C0075E3D1 /* GradientLayer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +290,9 @@
 				F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */,
 				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
+				F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */,
+				F882BF84276646350075E3D1 /* Extensions.swift in Sources */,
+				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
 				F81CEB42276291260079AB5A /* ApiManager.swift in Sources */,
 				F81CEB40276290DC0079AB5A /* Keys.swift in Sources */,
