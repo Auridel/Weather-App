@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SelectedLocationViewDelegate: AnyObject {
+    func didChangeLocation()
+}
+
 class SelectedLocationView: UIView {
     
     private var selectedLocation: String?

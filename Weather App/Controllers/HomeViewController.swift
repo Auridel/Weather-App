@@ -12,6 +12,15 @@ class HomeViewController: UIViewController {
     private let gradientLayer = GradientLayer()
     
     private var selectedLocationView: SelectedLocationView?
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.isScrollEnabled = true
+        return scrollView
+    }()
+    
+    private let currentWeatherView = CurrentWeatherView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +37,25 @@ class HomeViewController: UIViewController {
         guard let selectedLocationView = selectedLocationView else {
             return
         }
-        view.addSubview(selectedLocationView)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(selectedLocationView)
+        
+        scrollView.addSubview(currentWeatherView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        scrollView.frame = view.bounds
         selectedLocationView?.frame = CGRect(x: 16,
-                                             y: view.safeAreaInsets.top + 16,
-                                             width: view.width,
+                                             y: scrollView.safeAreaInsets.top + 16,
+                                             width: scrollView.width,
                                              height: 24)
+        currentWeatherView.frame = CGRect(x: 16,
+                                          y: selectedLocationView?.bottom ?? 0 + 32,
+                                          width: scrollView.width - 32,
+                                          height: 355)
     }
 
 }

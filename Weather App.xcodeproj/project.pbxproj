@@ -22,6 +22,8 @@
 		F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */; };
 		F882BF84276646350075E3D1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF83276646350075E3D1 /* Extensions.swift */; };
 		F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF872766476C0075E3D1 /* GradientLayer.swift */; };
+		F882BF8A27665AFB0075E3D1 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */; };
+		F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
 		F882BF83276646350075E3D1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F882BF872766476C0075E3D1 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
+		F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentContitionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,8 @@
 				F81CEB3B276288480079AB5A /* Storyboards */,
 				F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */,
 				F882BF872766476C0075E3D1 /* GradientLayer.swift */,
+				F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */,
+				F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			files = (
 				F81CEB2C2762874C0079AB5A /* Weather_App.xcdatamodeld in Sources */,
 				F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */,
+				F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */,
 				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
 				F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */,
@@ -295,6 +302,7 @@
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
 				F81CEB42276291260079AB5A /* ApiManager.swift in Sources */,
+				F882BF8A27665AFB0075E3D1 /* CurrentWeatherView.swift in Sources */,
 				F81CEB40276290DC0079AB5A /* Keys.swift in Sources */,
 				F81CEB4427629A950079AB5A /* Models.swift in Sources */,
 			);
