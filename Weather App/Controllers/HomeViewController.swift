@@ -37,7 +37,6 @@ class HomeViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         
         StorageManager.shared.getCityData()
-        
         configureSubviews()
     }
 
