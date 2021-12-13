@@ -8,6 +8,10 @@ target 'Weather App' do
   # Pods for Weather App
 
   #Network
-  pod 'Alamofire' 
+  pod 'Alamofire'
+  
+  #Rx
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
 end

@@ -38,6 +38,16 @@ class HomeViewController: UIViewController {
         
         StorageManager.shared.getCityData()
         
+        configureSubviews()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        layoutSubviews()
+    }
+    
+    private func configureSubviews() {
         selectedLocationView = SelectedLocationView(frame: CGRect(x: 0,
                                                                   y: 0,
                                                                   width: 0,
@@ -57,10 +67,8 @@ class HomeViewController: UIViewController {
         scrollView.addSubview(currentSkyCondition)
         scrollView.addSubview(currentWeatherView)
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    
+    private func layoutSubviews() {
         scrollView.frame = view.bounds
         selectedLocationView?.frame = CGRect(x: 16,
                                              y: scrollView.safeAreaInsets.top + 16,

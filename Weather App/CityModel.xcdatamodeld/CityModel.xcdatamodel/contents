@@ -7,6 +7,6 @@
         <attribute name="subcountry" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CityEntity" positionX="-36" positionY="9" width="128" height="89"/>
+        <element name="CityEntity" positionX="-45" positionY="0" width="128" height="89"/>
     </elements>
 </model>

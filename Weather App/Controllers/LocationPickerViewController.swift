@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import CoreData
 
 protocol LocationPickerViewControllerDelegate: AnyObject {
     func didSelectLocation(name: String)
@@ -13,7 +16,11 @@ protocol LocationPickerViewControllerDelegate: AnyObject {
 
 class LocationPickerViewController: UIViewController {
     
-    private var searchResults = [CityData]()
+    private var items = PublishSubject<[CityEntity]>()
+    
+    private let bag = DisposeBag()
+    
+    private var searchResults = [CityEntity]()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -36,15 +43,14 @@ class LocationPickerViewController: UIViewController {
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         return label
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
-        searchBar.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
+        bindTableData()
+        bindSearchBar()
         
         view.addSubview(tableView)
         view.addSubview(searchBar)
@@ -54,6 +60,10 @@ class LocationPickerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        configureSubviews()
+    }
+    
+    private func configureSubviews() {
         searchBar.frame = CGRect(x: 8,
                                  y: 0,
                                  width: view.width - 16,
@@ -64,49 +74,47 @@ class LocationPickerViewController: UIViewController {
                                  height: view.height - searchBar.height)
     }
     
-    private func updateSearchResults(with results: [CityData]) {
+    private func updateSearchResults(with results: [CityEntity]) {
         searchResults = results
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        items.onNext(results)
     }
-
-}
-
-
-// MARK: UISearchBarDelegate
-
-extension LocationPickerViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // TODO: Debounce next
-        let results = StorageManager.shared.findCityBy(namePrefix: searchText)
-        print(results)
+    private func bindTableData() {
+        //bind items to table
+        items.bind(to:
+                    tableView.rx.items(cellIdentifier: LocationTableViewCell.identifier,
+                                       cellType: LocationTableViewCell.self)) {row, model, cell in
+            cell.configure(with: model.name ?? "")
+        }.disposed(by: bag)
+        //bind model to handler
+        tableView.rx.modelSelected(CityEntity.self).bind {[weak self] model in
+            guard let self = self, let indexPath = self.tableView.indexPathForSelectedRow
+            else { return }
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }.disposed(by: bag)
+        //delegate
+        tableView.rx.setDelegate(self).disposed(by: bag)
+    }
+    
+    private func bindSearchBar() {
+        searchBar.rx.text.orEmpty
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] textValue in
+                self?.handleSearch(with: textValue)
+            }).disposed(by: bag)
+    }
+    
+    private func handleSearch(with text: String) {
+        let results = StorageManager.shared.findCityBy(namePrefix: text)
         updateSearchResults(with: results)
     }
 }
 
-// MARK: TableView
+// MARK: TableViewDelegate
 
-extension LocationPickerViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier,
-                                                 for: indexPath) as! LocationTableViewCell
-        cell.configure(with: searchResults[indexPath.row].name)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
+extension LocationPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 52
+        return 54
     }
 }
-
