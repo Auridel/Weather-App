@@ -72,6 +72,10 @@ class HomeViewController: UIViewController {
                                           action: #selector(didTapLocation))
         selectedLocationView.addGestureRecognizer(gesture)
         
+        let tapCurentWeatherWidgetGesture = UITapGestureRecognizer(target: self,
+                                                                   action: #selector(didTapCurrentWeatherWidget))
+        currentWeatherView.addGestureRecognizer(tapCurentWeatherWidgetGesture)
+        
         scrollView.addSubview(selectedLocationView)
         scrollView.addSubview(currentSkyCondition)
         scrollView.addSubview(currentWeatherView)
@@ -98,6 +102,12 @@ class HomeViewController: UIViewController {
         let locationVC = LocationPickerViewController()
         locationVC.delegate = self
         present(locationVC, animated: true)
+    }
+    
+    @objc private func didTapCurrentWeatherWidget() {
+        let detailedWeatherVC = DetailedWeatherViewController()
+        detailedWeatherVC.modalPresentationStyle = .fullScreen
+        present(detailedWeatherVC, animated: true)
     }
     
     // MARK: Common

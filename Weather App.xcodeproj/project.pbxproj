@@ -29,6 +29,7 @@
 		F882BF8E276670570075E3D1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8D276670570075E3D1 /* Utils.swift */; };
 		F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */; };
 		F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */; };
+		F8E5F52F2769399100FC71B4 /* DetailedWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5F52E2769399100FC71B4 /* DetailedWeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		F882BF8D276670570075E3D1 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		F8E5F52E2769399100FC71B4 /* DetailedWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				F81CEB252762874C0079AB5A /* HomeViewController.swift */,
 				F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */,
+				F8E5F52E2769399100FC71B4 /* DetailedWeatherViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				F81CEB2C2762874C0079AB5A /* Weather_App.xcdatamodeld in Sources */,
 				F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */,
 				F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */,
+				F8E5F52F2769399100FC71B4 /* DetailedWeatherViewController.swift in Sources */,
 				F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */,
 				F882BF8E276670570075E3D1 /* Utils.swift in Sources */,
 				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
