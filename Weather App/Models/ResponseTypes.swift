@@ -14,6 +14,7 @@ enum MainEnum: String, Codable {
     case clouds = "Clouds"
     case rain = "Rain"
     case snow = "Snow"
+    case mist = "Mist"
 }
 
 enum Description: String, Codable {
@@ -35,29 +36,71 @@ enum Pod: String, Codable {
 
 // MARK: Api Calls
 
-///Current Weather Responsse
+
+// MARK: - CurrentWeather
 struct CurrentWeather: Codable {
-    let coord: [String: Float]
-    let weather: [WeatherForCurrent]
+    let coord: CurCoord
+    let weather: [Weather]
     let base: String
-    let main: MainWeatherParams
-    let visibility:Float
-    let wind: Wind
-    let clouds: CloudParams
-    let dt: Double
-    let sys: LocalSunrise
-    let timezone: Int
-    let id: Int
+    let main: CurMain
+    let visibility: Int
+    let wind: CurWind
+    let clouds: CurClouds
+    let dt: Int
+    let sys: CurSys
+    let timezone, id: Int
     let name: String
     let cod: Int
 }
 
-/// 5-day Weather Forecast Response
+// MARK: ForecastWeather
+///5-day Weather Forecast Response
 struct ForecastWeather: Codable {
     let cod: String
     let message, cnt: Int
     let list: [DayList]
     let city: City
+}
+
+// MARK: - Clouds
+struct CurClouds: Codable {
+    let all: Int
+}
+
+// MARK: - Coord
+struct CurCoord: Codable {
+    let lon, lat: Double
+}
+
+// MARK: - Main
+struct CurMain: Codable {
+    let temp, feelsLike, tempMin, tempMax: Double?
+    let pressure, humidity, seaLevel, grndLevel: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case temp
+        case feelsLike = "feels_like"
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
+        case pressure, humidity
+        case seaLevel = "sea_level"
+        case grndLevel = "grnd_level"
+    }
+}
+
+// MARK: - Sys
+struct CurSys: Codable {
+    let type, id: Int?
+    let country: String
+    let sunrise, sunset: Int
+}
+
+
+// MARK: - Wind
+struct CurWind: Codable {
+    let speed: Double
+    let deg: Int
+    let gust: Double?
 }
 
 // MARK: Minor Models

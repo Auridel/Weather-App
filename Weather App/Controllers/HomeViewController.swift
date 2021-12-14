@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     
-    private var forecastData: ForecastWeather?
+    private var forecastData: CurrentWeather?
     
     private let currentSkyCondition: UIImageView = {
         let imageView = UIImageView()
@@ -95,8 +95,9 @@ class HomeViewController: UIViewController {
     
     // MARK: Actions
     @objc private func didTapLocation() {
-        let popupVC = LocationPickerViewController()
-        present(popupVC, animated: true)
+        let locationVC = LocationPickerViewController()
+        locationVC.delegate = self
+        present(locationVC, animated: true)
     }
     
     // MARK: Common
@@ -112,19 +113,20 @@ class HomeViewController: UIViewController {
     }
     
     private func requestForecastFor(city name: String) {
-        ApiManager.shared.getForecastByCityName(for: name) { [weak self] result in
+        ApiManager.shared.getCurrentWeatherByCity(for: name) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let forecast):
                 self.forecastData = forecast
-                let todayWeather = forecast.list[0]
-                let skyCondition = todayWeather.weather[0].main
+                let todayWeather = forecast.weather[0]
+                let skyCondition = todayWeather.main
                 self.changeConditionTo(skyCondition)
-                self.currentWeatherView.setWeatherConditions(temp: todayWeather.main.temp,
-                                                             conditions: todayWeather.weather[0].weatherDescription.rawValue,
-                                                             wind: todayWeather.wind.speed,
-                                                             humidity: todayWeather.main.humidity)
+                self.currentWeatherView.setWeatherConditions(temp: forecast.main.temp ?? 0,
+                                                             conditions: todayWeather.weatherDescription.rawValue,
+                                                             wind: forecast.wind.speed,
+                                                             humidity: forecast.main.humidity ?? 0)
             case .failure(_):
+                print("Failed to update weather")
                 break
             }
         }
@@ -160,4 +162,18 @@ extension HomeViewController: CLLocationManagerDelegate {
         }
         print("\(locationData.longitude) \(locationData.latitude)")
     }
+}
+
+// MARK: LocationPicker Delegate
+
+extension HomeViewController: LocationPickerViewControllerDelegate {
+    
+    func didSelectLocation(model: CityEntity) {
+        guard let name = model.name else{ return }
+        selectedLocationView?.configure(with: name)
+        requestForecastFor(city: name)
+        StorageManager.shared.setUserSelectedCity(with: Int(model.geonameid))
+    }
+    
+    
 }

@@ -11,7 +11,7 @@ import RxCocoa
 import CoreData
 
 protocol LocationPickerViewControllerDelegate: AnyObject {
-    func didSelectLocation(name: String)
+    func didSelectLocation(model: CityEntity)
 }
 
 class LocationPickerViewController: UIViewController {
@@ -21,6 +21,8 @@ class LocationPickerViewController: UIViewController {
     private let bag = DisposeBag()
     
     private var searchResults = [CityEntity]()
+    
+    weak var delegate: LocationPickerViewControllerDelegate?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -90,7 +92,9 @@ class LocationPickerViewController: UIViewController {
         tableView.rx.modelSelected(CityEntity.self).bind {[weak self] model in
             guard let self = self, let indexPath = self.tableView.indexPathForSelectedRow
             else { return }
+            self.didSelectLocation(model: model)
             self.tableView.deselectRow(at: indexPath, animated: true)
+            self.dismiss(animated: true, completion: nil)
         }.disposed(by: bag)
         //delegate
         tableView.rx.setDelegate(self).disposed(by: bag)
@@ -108,6 +112,10 @@ class LocationPickerViewController: UIViewController {
         let results = StorageManager.shared.findCityBy(namePrefix: text)
         print(results)
         updateSearchResults(with: results)
+    }
+    
+    private func didSelectLocation(model: CityEntity) {
+        delegate?.didSelectLocation(model: model)
     }
 }
 

@@ -59,11 +59,11 @@ class CurrentWeatherView: UIView {
         self.addSubview(humidityView)
         
         // FIXME: TEST DATA
-        dateLabel.text = "Today, 12 September"
-        tempLabel.text = "29 °"
-        skyConditionLabel.text = "cloudy"
-        windView.configure(for: .wind, value: 10)
-        humidityView.configure(for: .humidity, value: 54)
+        dateLabel.text = Utils.getCurrentDateAsHumanString()
+        tempLabel.text = "-- °"
+        skyConditionLabel.text = "--"
+        windView.configure(for: .wind, value: 0)
+        humidityView.configure(for: .humidity, value: 0)
     }
     
     required init?(coder: NSCoder) {

@@ -63,11 +63,11 @@ class SelectedLocationView: UIView {
                                          height: 24)
         if let text = locationLabel.text {
             var rect: CGRect = locationLabel.frame
-            rect.size = (text.size(withAttributes: [NSAttributedString.Key.font: UIFont(name: locationLabel.font.fontName, size: locationLabel.font.pointSize) ?? 0])) as CGSize
+            rect.size = (text.size(withAttributes: [NSAttributedString.Key.font: UIFont(name: locationLabel.font.fontName, size: locationLabel.font.pointSize + 4) ?? 16])) as CGSize
             let maxLabelWidth: CGFloat = self.width - locationImageView.width - 12 - 16 * 4;
             locationLabel.frame = CGRect(x: locationImageView.right + 16,
                                          y: self.height / 2 - 12,
-                                         width: rect.width + 10 > maxLabelWidth ? maxLabelWidth : rect.width + 10,
+                                         width: rect.width > maxLabelWidth ? maxLabelWidth : rect.width,
                                          height: 24)
             arrowImageView.frame = CGRect(x: locationLabel.right + 16,
                                           y: self.height / 2 - 6,
@@ -75,5 +75,12 @@ class SelectedLocationView: UIView {
                                           height: 12)
         }
         
+    }
+    
+    public func configure(with name: String) {
+        DispatchQueue.main.async {
+            self.locationLabel.text = name
+            self.layoutSubviews()
+        }
     }
 }
