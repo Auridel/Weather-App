@@ -24,12 +24,20 @@ class LocationTableViewCell: UITableViewCell {
         label.textColor = .label
         return label
     }()
+    
+    private let countryLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .label.withAlphaComponent(0.54)
+        return label
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
  
         contentView.addSubview(cellImage)
         contentView.addSubview(locationLabel)
+        contentView.addSubview(countryLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -44,18 +52,24 @@ class LocationTableViewCell: UITableViewCell {
                                  width: 24,
                                  height: 24)
         locationLabel.frame = CGRect(x: cellImage.right + 16,
-                                     y: contentView.height / 2 - 9,
+                                     y: 10,
                                      width: contentView.width - 16 * 3 - cellImage.width,
                                      height: 18)
+        countryLabel.frame = CGRect(x: cellImage.right + 16,
+                                    y: locationLabel.bottom + 4,
+                                    width: contentView.width - 16 * 3 - cellImage.width,
+                                    height: 14)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        locationLabel.text = ""
+        locationLabel.text = nil
+        countryLabel.text = nil
     }
     
-    public func configure(with name: String) {
-        locationLabel.text = name
+    public func configure(with model: CityEntity) {
+        locationLabel.text = model.name ?? ""
+        countryLabel.text = model.country ?? ""
     }
 }

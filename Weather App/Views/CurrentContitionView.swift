@@ -81,12 +81,12 @@ class CurrentContitionView: UIView {
                                  height: 18)
     }
     
-    public func configure(for type: ConditionType, value: Float) {
+    public func configure(for type: ConditionType, value: Double) {
         switch type {
         case .wind:
             labelIcon.image = UIImage(systemName: "wind")
             primaryLabel.text = "Wind"
-            infoLabel.text = "\(value) km/h"
+            infoLabel.text = "\(value) m/s"
         case .humidity:
             labelIcon.image = UIImage(systemName: "drop")
             primaryLabel.text = "Hum"

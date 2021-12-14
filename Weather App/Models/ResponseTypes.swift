@@ -13,6 +13,7 @@ enum MainEnum: String, Codable {
     case clear = "Clear"
     case clouds = "Clouds"
     case rain = "Rain"
+    case snow = "Snow"
 }
 
 enum Description: String, Codable {
@@ -22,6 +23,8 @@ enum Description: String, Codable {
     case lightRain = "light rain"
     case moderateRain = "moderate rain"
     case overcastClouds = "overcast clouds"
+    case lightSnow = "light snow"
+    case snow = "snow"
 }
 
 enum Pod: String, Codable {

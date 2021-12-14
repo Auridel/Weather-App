@@ -10,7 +10,7 @@ import Alamofire
 
 class ApiManager {
     
-    typealias TypedCompletion<T> = (T) -> Void
+    typealias TypedCompletion<T> = (Result<T, Error>) -> Void
     
     public static let shared = ApiManager()
     
@@ -19,6 +19,10 @@ class ApiManager {
     private let baseUrl = "https://api.openweathermap.org/data/2.5/"
     
     private init() {}
+    
+    enum ApiErrors: Error {
+        case failedToGetDate
+    }
     
     public func getCurrentWeatherByCity(for city: String, completion: @escaping TypedCompletion<CurrentWeather>) {
         print(apiKey)
@@ -37,13 +41,15 @@ class ApiManager {
                     do {
                         let model = try jsonDecoder.decode(CurrentWeather.self, from: jsonData)
                         print(model)
-                        completion(model)
+                        completion(.success(model))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)
+                        completion(.failure(error))
                     }
                 case .failure(let error):
                     print(error)
+                    completion(.failure(error))
                 }
             }
     }
@@ -62,13 +68,15 @@ class ApiManager {
                     do {
                         let model = try jsonDecoder.decode(CurrentWeather.self, from: jsonData)
                         print(model)
-                        completion(model)
+                        completion(.success(model))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)
+                        completion(.failure(error))
                     }
                 case .failure(let error):
                     print(error)
+                    completion(.failure(error))
                 }
             }
     }
@@ -88,13 +96,15 @@ class ApiManager {
                     do {
                         let model = try jsonDecoder.decode(ForecastWeather.self, from: jsonData)
                         print(model)
-                        completion(model)
+                        completion(.success(model))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)
+                        completion(.failure(error))
                     }
                 case .failure(let error):
                     print(error)
+                    completion(.failure(error))
                 }
             }
     }
@@ -114,13 +124,15 @@ class ApiManager {
                     do {
                         let model = try jsonDecoder.decode(ForecastWeather.self, from: jsonData)
                         print(model)
-                        completion(model)
+                        completion(.success(model))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)
+                        completion(.failure(error))
                     }
                 case .failure(let error):
                     print(error)
+                    completion(.failure(error))
                 }
             }
     }

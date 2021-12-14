@@ -7,3 +7,6 @@
 
 import Foundation
 
+enum StorageKeys: String {
+    case selectedCity = "selectedCity"
+}

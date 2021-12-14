@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeViewController: UIViewController {
     
     private let gradientLayer = GradientLayer()
     
     private var selectedLocationView: SelectedLocationView?
+    
+    private let locationManager = CLLocationManager()
+    
+    private var forecastData: ForecastWeather?
     
     private let currentSkyCondition: UIImageView = {
         let imageView = UIImageView()
@@ -47,11 +52,16 @@ class HomeViewController: UIViewController {
     }
     
     private func configureSubviews() {
+        let selectedLocation = StorageManager.shared.getStoredLocation()
+        if let cityName = selectedLocation?.name {
+            requestForecastFor(city: cityName)
+        }
+        
         selectedLocationView = SelectedLocationView(frame: CGRect(x: 0,
                                                                   y: 0,
                                                                   width: 0,
                                                                   height: 0),
-                                                        location: "Moscow")
+                                                    location: selectedLocation?.name ?? "Moscow")
         guard let selectedLocationView = selectedLocationView else {
             return
         }
@@ -88,6 +98,66 @@ class HomeViewController: UIViewController {
         let popupVC = LocationPickerViewController()
         present(popupVC, animated: true)
     }
+    
+    // MARK: Common
+    
+    private func configureLocationManager() {
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    private func requestForecastFor(city name: String) {
+        ApiManager.shared.getForecastByCityName(for: name) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let forecast):
+                self.forecastData = forecast
+                let todayWeather = forecast.list[0]
+                let skyCondition = todayWeather.weather[0].main
+                self.changeConditionTo(skyCondition)
+                self.currentWeatherView.setWeatherConditions(temp: todayWeather.main.temp,
+                                                             conditions: todayWeather.weather[0].weatherDescription.rawValue,
+                                                             wind: todayWeather.wind.speed,
+                                                             humidity: todayWeather.main.humidity)
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    public func changeConditionTo(_ condition: MainEnum) {
+        // TODO: fix all cases
+        var image: UIImage?
+        switch condition {
+        case .clear:
+            image = UIImage(named: "sun")
+        case .clouds:
+            image = UIImage(named: "cloud_with_sun")
+        case .rain:
+            image = UIImage(named: "clouds")
+        default:
+            image = UIImage(named: "clouds")
+        }
+        DispatchQueue.main.async {
+            self.currentSkyCondition.image = image
+        }
+    }
 
 }
 
+
+// MARK: CLLocatioDelegate
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locationData: CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        print("\(locationData.longitude) \(locationData.latitude)")
+    }
+}

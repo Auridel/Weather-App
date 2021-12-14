@@ -6,7 +6,11 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="subcountry" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="UserSelect" representedClassName="UserSelect" syncable="YES" codeGenerationType="class">
+        <attribute name="selected_city_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="CityEntity" positionX="-36" positionY="9" width="128" height="89"/>
+        <element name="UserSelect" positionX="-36" positionY="36" width="128" height="44"/>
     </elements>
 </model>

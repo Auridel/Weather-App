@@ -21,6 +21,8 @@ class StorageManager {
     
     private init(){}
     
+    // MARK: Public
+    
     /// Load entities from DB
     public func getCityData() {
         if !isSync, cityModels.isEmpty {
@@ -41,6 +43,23 @@ class StorageManager {
         }
         return cityModels.filter { ($0.name?.lowercased() ?? "").hasPrefix(name.lowercased())}
     }
+    
+    public func setUserSelectedCity(with geonameId: Int) {
+        UserDefaults.standard.setValue(geonameId, forKey: StorageKeys.selectedCity.rawValue)
+    }
+    
+    public func getStoredLocation() -> CityEntity? {
+        let defaultId = 524901
+        let storedId = UserDefaults.standard.integer(forKey: StorageKeys.selectedCity.rawValue)
+        if storedId != 0, let model = cityModels.first(where: { $0.geonameid == storedId }) {
+            return model
+        } else if let model = cityModels.first(where: {$0.geonameid == defaultId }) {
+            return model
+        }
+        return nil
+    }
+    
+    // MARK: Private
     
     /// Fetches data from json file
     private func fetchDataFromFile() {

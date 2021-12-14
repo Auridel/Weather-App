@@ -84,7 +84,7 @@ class LocationPickerViewController: UIViewController {
         items.bind(to:
                     tableView.rx.items(cellIdentifier: LocationTableViewCell.identifier,
                                        cellType: LocationTableViewCell.self)) {row, model, cell in
-            cell.configure(with: model.name ?? "")
+            cell.configure(with: model)
         }.disposed(by: bag)
         //bind model to handler
         tableView.rx.modelSelected(CityEntity.self).bind {[weak self] model in
@@ -106,6 +106,7 @@ class LocationPickerViewController: UIViewController {
     
     private func handleSearch(with text: String) {
         let results = StorageManager.shared.findCityBy(namePrefix: text)
+        print(results)
         updateSearchResults(with: results)
     }
 }
