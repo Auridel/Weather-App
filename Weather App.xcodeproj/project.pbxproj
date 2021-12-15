@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		227AC7AE5EB897814320A3D3 /* Pods_Weather_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC8CA2A17474444B595447E /* Pods_Weather_App.framework */; };
 		F814D20F276A657400A3C24D /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814D20E276A657400A3C24D /* ApiResponse.swift */; };
+		F814D211276A794E00A3C24D /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814D210276A794E00A3C24D /* HourlyView.swift */; };
+		F814D213276A79AD00A3C24D /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814D212276A79AD00A3C24D /* HourlyCollectionViewCell.swift */; };
 		F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB212762874C0079AB5A /* AppDelegate.swift */; };
 		F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB232762874C0079AB5A /* SceneDelegate.swift */; };
 		F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB252762874C0079AB5A /* HomeViewController.swift */; };
@@ -38,6 +40,8 @@
 		2202CFE2E100197440970D98 /* Pods-Weather App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.release.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.release.xcconfig"; sourceTree = "<group>"; };
 		CEC8CA2A17474444B595447E /* Pods_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F814D20E276A657400A3C24D /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		F814D210276A794E00A3C24D /* HourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyView.swift; sourceTree = "<group>"; };
+		F814D212276A79AD00A3C24D /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F81CEB1E2762874C0079AB5A /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81CEB212762874C0079AB5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F81CEB232762874C0079AB5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 				F882BF872766476C0075E3D1 /* GradientLayer.swift */,
 				F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */,
 				F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */,
+				F814D210276A794E00A3C24D /* HourlyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */,
+				F814D212276A79AD00A3C24D /* HourlyCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */,
 				F8E5F52F2769399100FC71B4 /* DetailedWeatherViewController.swift in Sources */,
 				F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */,
+				F814D211276A794E00A3C24D /* HourlyView.swift in Sources */,
 				F882BF8E276670570075E3D1 /* Utils.swift in Sources */,
 				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
@@ -335,6 +342,7 @@
 				F814D20F276A657400A3C24D /* ApiResponse.swift in Sources */,
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
+				F814D213276A79AD00A3C24D /* HourlyCollectionViewCell.swift in Sources */,
 				F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */,
 				F81CEB42276291260079AB5A /* ApiManager.swift in Sources */,
 				F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */,
