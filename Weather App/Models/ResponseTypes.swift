@@ -15,6 +15,7 @@ enum MainEnum: String, Codable {
     case rain = "Rain"
     case snow = "Snow"
     case mist = "Mist"
+    case drizzle = "Drizzle"
 }
 
 enum Description: String, Codable {

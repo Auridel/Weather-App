@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     
-    private var forecastData: CurrentWeather?
+    private var forecastData: CurrentWeatherData?
     
     private let currentSkyCondition: UIImageView = {
         let imageView = UIImageView()
@@ -128,13 +128,11 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let forecast):
                 self.forecastData = forecast
-                let todayWeather = forecast.weather[0]
-                let skyCondition = todayWeather.main
-                self.changeConditionTo(skyCondition)
-                self.currentWeatherView.setWeatherConditions(temp: forecast.main.temp ?? 0,
-                                                             conditions: todayWeather.weatherDescription.rawValue,
-                                                             wind: forecast.wind.speed,
-                                                             humidity: forecast.main.humidity ?? 0)
+                self.changeConditionTo(forecast.sky)
+                self.currentWeatherView.setWeatherConditions(temp: forecast.temp,
+                                                             conditions: forecast.description,
+                                                             wind: forecast.wind,
+                                                             humidity: forecast.humidity)
             case .failure(_):
                 print("Failed to update weather")
                 break
@@ -142,7 +140,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    public func changeConditionTo(_ condition: MainEnum) {
+    public func changeConditionTo(_ condition: ESkyCondition) {
         // TODO: fix all cases
         var image: UIImage?
         switch condition {

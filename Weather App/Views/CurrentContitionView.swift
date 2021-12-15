@@ -69,7 +69,7 @@ class CurrentContitionView: UIView {
         primaryLabel.frame = CGRect(x: labelView.right - 16 - 45,
                                     y: labelView.height / 2 - 9,
                                     width: 45,
-                                    height: labelView.height)
+                                    height: 18)
         labelIcon.frame = CGRect(x: primaryLabel.left - 16 - 24,
                                  y: labelView.height / 2 - 12,
                                  width: 24,

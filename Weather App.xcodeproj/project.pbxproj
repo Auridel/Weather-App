@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		227AC7AE5EB897814320A3D3 /* Pods_Weather_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC8CA2A17474444B595447E /* Pods_Weather_App.framework */; };
+		F814D20F276A657400A3C24D /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F814D20E276A657400A3C24D /* ApiResponse.swift */; };
 		F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB212762874C0079AB5A /* AppDelegate.swift */; };
 		F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB232762874C0079AB5A /* SceneDelegate.swift */; };
 		F81CEB262762874C0079AB5A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB252762874C0079AB5A /* HomeViewController.swift */; };
@@ -36,6 +37,7 @@
 		200C76BE4BB7F67EE9B60F93 /* Pods-Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.debug.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 		2202CFE2E100197440970D98 /* Pods-Weather App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.release.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.release.xcconfig"; sourceTree = "<group>"; };
 		CEC8CA2A17474444B595447E /* Pods_Weather_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F814D20E276A657400A3C24D /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		F81CEB1E2762874C0079AB5A /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F81CEB212762874C0079AB5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F81CEB232762874C0079AB5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				F81CEB4327629A950079AB5A /* Models.swift */,
 				F81CEB452762A0D60079AB5A /* ResponseTypes.swift */,
+				F814D20E276A657400A3C24D /* ApiResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
 				F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */,
 				F882BF84276646350075E3D1 /* Extensions.swift in Sources */,
+				F814D20F276A657400A3C24D /* ApiResponse.swift in Sources */,
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
 				F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */,
