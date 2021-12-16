@@ -13,19 +13,23 @@ class ForecastTableViewCell: UITableViewCell {
     
     private let dateLabel: UILabel = {
         let label = UILabel()
-        
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.textColor = .white
+        label.textAlignment = .left
         return label
     }()
     
     private let conditionImageView: UIImageView = {
         let imageView = UIImageView()
-        
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private let tempLabel: UILabel = {
         let label = UILabel()
-        
+        label.font = .systemFont(ofSize: 18)
+        label.textColor = .white
+        label.textAlignment = .right
         return label
     }()
 
@@ -33,6 +37,7 @@ class ForecastTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
         
         contentView.addSubview(dateLabel)
         contentView.addSubview(conditionImageView)
@@ -45,6 +50,19 @@ class ForecastTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        dateLabel.frame = CGRect(x: 0,
+                                 y: contentView.height / 2 - 9,
+                                 width: 70,
+                                 height: 18)
+        conditionImageView.frame = CGRect(x: contentView.width / 2 - 28,
+                                          y: contentView.height / 2 - 28,
+                                          width: 56,
+                                          height: 56)
+        tempLabel.frame = CGRect(x: contentView.width - 70,
+                                 y: contentView.height / 2 - 9,
+                                 width: 70,
+                                 height: 18)
     }
     
     override func prepareForReuse() {
@@ -53,5 +71,11 @@ class ForecastTableViewCell: UITableViewCell {
         dateLabel.text = nil
         conditionImageView.image = nil
         tempLabel.text = nil
+    }
+    
+    public func configure(with model: DailyForecastData) {
+        dateLabel.text = Utils.formatDateToShortLabel(timestamp: model.timestamp)
+        conditionImageView.image = Utils.getImageByCondition(model.sky)
+        tempLabel.text = "\(Int(model.temp))°C"
     }
 }

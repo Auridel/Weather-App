@@ -11,7 +11,7 @@ import RxCocoa
 
 class ForecastView: UIView {
     
-    private var dateItems = PublishSubject<[String]>()
+    private var dateItems = PublishSubject<[DailyForecastData]>()
     
     private let bag = DisposeBag()
 
@@ -21,6 +21,7 @@ class ForecastView: UIView {
         tableView.showsHorizontalScrollIndicator = true
         tableView.register(ForecastTableViewCell.self,
                            forCellReuseIdentifier: ForecastTableViewCell.identifier)
+        tableView.backgroundColor = UIColor.clear
         return tableView
     }()
     
@@ -29,6 +30,7 @@ class ForecastView: UIView {
         
         self.backgroundColor = UIColor.clear
         configureSubviews()
+        bindTableView()
     }
     
     required init?(coder: NSCoder) {
@@ -52,10 +54,10 @@ class ForecastView: UIView {
     private func bindTableView() {
         dateItems.bind(to: tableView.rx.items(cellIdentifier: ForecastTableViewCell.identifier,
                                                 cellType: ForecastTableViewCell.self)) { row, model, cell in
-            
+            cell.configure(with: model)
         }.disposed(by: bag)
         
-        tableView.rx.modelSelected(String.self).bind { [weak self] model in
+        tableView.rx.modelSelected(DailyForecastData.self).bind { [weak self] model in
             guard let self = self,
                   let indexPath = self.tableView.indexPathForSelectedRow
             else {
@@ -65,7 +67,7 @@ class ForecastView: UIView {
         }.disposed(by: bag)
     }
     
-    public func pushForecastData(_ data: [String]) {
+    public func pushForecastData(_ data: [DailyForecastData]) {
         dateItems.onNext(data)
     }
 }

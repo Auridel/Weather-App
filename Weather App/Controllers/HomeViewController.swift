@@ -149,17 +149,7 @@ class HomeViewController: UIViewController {
     
     public func changeConditionTo(_ condition: ESkyCondition) {
         // TODO: fix all cases
-        var image: UIImage?
-        switch condition {
-        case .clear:
-            image = UIImage(named: "sun")
-        case .clouds:
-            image = UIImage(named: "cloud_with_sun")
-        case .rain:
-            image = UIImage(named: "clouds")
-        default:
-            image = UIImage(named: "clouds")
-        }
+        let image = Utils.getImageByCondition(condition)
         DispatchQueue.main.async {
             self.currentSkyCondition.image = image
         }

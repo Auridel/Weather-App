@@ -20,7 +20,7 @@ struct ForecastWeatherData {
 }
 
 struct DailyForecastData {
-    let timestamp: Int
+    let timestamp: TimeInterval
     let temp: Double
     let humidity: Int
     let wind: Double

@@ -140,7 +140,7 @@ class ApiManager {
                         }
                         var result = [DailyForecastData]()
                         for day in daylist {
-                            guard let timestamp = day["dt"] as? Int,
+                            guard let timestamp = day["dt"] as? TimeInterval,
                                   let mainData = day["main"] as? [String: Any],
                                   let temp = mainData["temp"] as? Double,
                                   let humidity = mainData["humidity"] as? Int,
@@ -197,7 +197,7 @@ class ApiManager {
                         }
                         var result = [DailyForecastData]()
                         for day in daylist {
-                            guard let timestamp = day["dt"] as? Int,
+                            guard let timestamp = day["dt"] as? TimeInterval,
                                   let mainData = day["main"] as? [String: Any],
                                   let temp = mainData["temp"] as? Double,
                                   let humidity = mainData["humidity"] as? Int,

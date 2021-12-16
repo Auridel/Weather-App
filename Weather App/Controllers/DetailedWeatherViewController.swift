@@ -131,7 +131,7 @@ class DetailedWeatherViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let forecast):
-                print(forecast)
+                self.forecastView.pushForecastData(forecast.daylist)
             case .failure(_):
                 break
             }
