@@ -9,6 +9,10 @@ import UIKit
 
 class DetailedWeatherViewController: UIViewController {
     
+    public var selectedCity: String?
+    
+    private var forecast: Any?
+    
     private let gradientLayer = GradientLayer()
     
     private let backButton: UIButton = {
@@ -39,7 +43,18 @@ class DetailedWeatherViewController: UIViewController {
         return label
     }()
     
+    private let nextForecastLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Next Forecast"
+        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
+    }()
+    
     private let hourlyView = HourlyView()
+    
+    private let forecastView = ForecastView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +64,7 @@ class DetailedWeatherViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         
         configureSubviews()
+        fetchForecastData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,6 +82,8 @@ class DetailedWeatherViewController: UIViewController {
         view.addSubview(todayLabel)
         view.addSubview(dateLabel)
         view.addSubview(hourlyView)
+        view.addSubview(nextForecastLabel)
+        view.addSubview(forecastView)
     }
     
     private func layoutSubviews() {
@@ -85,6 +103,14 @@ class DetailedWeatherViewController: UIViewController {
                                   y: todayLabel.bottom + 30,
                                   width: view.width,
                                   height: 160)
+        nextForecastLabel.frame = CGRect(x: 16,
+                                         y: hourlyView.bottom + 24,
+                                         width: view.width - 32,
+                                         height: 22)
+        forecastView.frame = CGRect(x: 16,
+                                    y: nextForecastLabel.bottom + 16,
+                                    width: view.width - 32,
+                                    height: view.height - nextForecastLabel.bottom - 16 - view.safeAreaInsets.bottom)
     }
     
     
@@ -92,5 +118,24 @@ class DetailedWeatherViewController: UIViewController {
     
     @objc private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Common
+    
+    private func fetchForecastData() {
+        guard let selectedCity = selectedCity else {
+            return
+        }
+        ApiManager.shared.getDailyForecastByCityName(for: selectedCity,
+                                                   completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let forecast):
+                print(forecast)
+            case .failure(_):
+                break
+            }
+            
+        })
     }
 }

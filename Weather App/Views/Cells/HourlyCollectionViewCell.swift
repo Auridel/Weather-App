@@ -41,7 +41,6 @@ class HourlyCollectionViewCell: UICollectionViewCell {
 //        contentView.backgroundColor = UIColor.clear
         contentView.backgroundColor = .red
         
-        print("INIT CELL")
         configureSubviews()
     }
     
@@ -53,6 +52,14 @@ class HourlyCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         configureSubviewsFrames()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        tempLabel.text = nil
+        timeLabel.text = nil
+        conditionImage.image = nil
     }
     
     private func configureSubviews() {

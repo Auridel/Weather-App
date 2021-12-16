@@ -35,4 +35,5 @@ enum ESkyCondition: String, Codable {
     case snow = "Snow"
     case mist = "Mist"
     case drizzle = "Drizzle"
+    case fog = "Fog"
 }

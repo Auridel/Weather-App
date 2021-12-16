@@ -10,6 +10,8 @@ import CoreLocation
 
 class HomeViewController: UIViewController {
     
+    private var selectedCity: String?
+    
     private let gradientLayer = GradientLayer()
     
     private var selectedLocationView: SelectedLocationView?
@@ -54,6 +56,7 @@ class HomeViewController: UIViewController {
     private func configureSubviews() {
         let selectedLocation = StorageManager.shared.getStoredLocation()
         if let cityName = selectedLocation?.name {
+            selectedCity = cityName
             requestForecastFor(city: cityName)
         }
         
@@ -105,8 +108,12 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func didTapCurrentWeatherWidget() {
+        guard let cityName = selectedCity else {
+            return
+        }
         let detailedWeatherVC = DetailedWeatherViewController()
         detailedWeatherVC.modalPresentationStyle = .fullScreen
+        detailedWeatherVC.selectedCity = cityName
         present(detailedWeatherVC, animated: true)
     }
     
@@ -178,6 +185,7 @@ extension HomeViewController: LocationPickerViewControllerDelegate {
     
     func didSelectLocation(model: CityEntity) {
         guard let name = model.name else{ return }
+        selectedCity = model.name
         selectedLocationView?.configure(with: name)
         requestForecastFor(city: name)
         StorageManager.shared.setUserSelectedCity(with: Int(model.geonameid))

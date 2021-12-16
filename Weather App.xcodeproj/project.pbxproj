@@ -21,7 +21,6 @@
 		F81CEB40276290DC0079AB5A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB3F276290DC0079AB5A /* Keys.swift */; };
 		F81CEB42276291260079AB5A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB41276291260079AB5A /* ApiManager.swift */; };
 		F81CEB4427629A950079AB5A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB4327629A950079AB5A /* Models.swift */; };
-		F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEB452762A0D60079AB5A /* ResponseTypes.swift */; };
 		F8501AF327668A1100E44E1C /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = F8501AF227668A1100E44E1C /* cities.json */; };
 		F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8501AF427668CC100E44E1C /* StorageManager.swift */; };
 		F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */; };
@@ -33,6 +32,8 @@
 		F882BF902766775B0075E3D1 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */; };
 		F882BF9327667D9F0075E3D1 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */; };
 		F8E5F52F2769399100FC71B4 /* DetailedWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E5F52E2769399100FC71B4 /* DetailedWeatherViewController.swift */; };
+		F8F8D073276BCC0400105FC4 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F8D072276BCC0400105FC4 /* ForecastView.swift */; };
+		F8F8D075276BCC6400105FC4 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F8D074276BCC6400105FC4 /* ForecastTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +55,6 @@
 		F81CEB3F276290DC0079AB5A /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		F81CEB41276291260079AB5A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		F81CEB4327629A950079AB5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		F81CEB452762A0D60079AB5A /* ResponseTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTypes.swift; sourceTree = "<group>"; };
 		F8501AF227668A1100E44E1C /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		F8501AF427668CC100E44E1C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		F882BF81276642BA0075E3D1 /* SelectedLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedLocationView.swift; sourceTree = "<group>"; };
@@ -66,6 +66,8 @@
 		F882BF8F2766775B0075E3D1 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
 		F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		F8E5F52E2769399100FC71B4 /* DetailedWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWeatherViewController.swift; sourceTree = "<group>"; };
+		F8F8D072276BCC0400105FC4 /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		F8F8D074276BCC6400105FC4 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				F882BF8927665AFB0075E3D1 /* CurrentWeatherView.swift */,
 				F882BF8B27665DEF0075E3D1 /* CurrentContitionView.swift */,
 				F814D210276A794E00A3C24D /* HourlyView.swift */,
+				F8F8D072276BCC0400105FC4 /* ForecastView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				F81CEB4327629A950079AB5A /* Models.swift */,
-				F81CEB452762A0D60079AB5A /* ResponseTypes.swift */,
 				F814D20E276A657400A3C24D /* ApiResponse.swift */,
 			);
 			path = Models;
@@ -208,6 +210,7 @@
 			children = (
 				F882BF9227667D9F0075E3D1 /* LocationTableViewCell.swift */,
 				F814D212276A79AD00A3C24D /* HourlyCollectionViewCell.swift */,
+				F8F8D074276BCC6400105FC4 /* ForecastTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -334,13 +337,14 @@
 				F8E5F52F2769399100FC71B4 /* DetailedWeatherViewController.swift in Sources */,
 				F882BF8C27665DEF0075E3D1 /* CurrentContitionView.swift in Sources */,
 				F814D211276A794E00A3C24D /* HourlyView.swift in Sources */,
+				F8F8D075276BCC6400105FC4 /* ForecastTableViewCell.swift in Sources */,
 				F882BF8E276670570075E3D1 /* Utils.swift in Sources */,
-				F81CEB462762A0D60079AB5A /* ResponseTypes.swift in Sources */,
 				F81CEB222762874C0079AB5A /* AppDelegate.swift in Sources */,
 				F882BF82276642BA0075E3D1 /* SelectedLocationView.swift in Sources */,
 				F882BF84276646350075E3D1 /* Extensions.swift in Sources */,
 				F814D20F276A657400A3C24D /* ApiResponse.swift in Sources */,
 				F882BF882766476C0075E3D1 /* GradientLayer.swift in Sources */,
+				F8F8D073276BCC0400105FC4 /* ForecastView.swift in Sources */,
 				F81CEB242762874C0079AB5A /* SceneDelegate.swift in Sources */,
 				F814D213276A79AD00A3C24D /* HourlyCollectionViewCell.swift in Sources */,
 				F8501AF527668CC100E44E1C /* StorageManager.swift in Sources */,

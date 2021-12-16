@@ -21,7 +21,7 @@ class ApiManager {
     private init() {}
     
     enum ApiErrors: Error {
-        case failedToGetDate
+        case failedToGetDate, failedToParseData
     }
     
     public func getCurrentWeatherByCity(for city: String, completion: @escaping TypedCompletion<CurrentWeatherData>) {
@@ -53,6 +53,7 @@ class ApiManager {
                               let description = weatherData[0]["description"] as? String
                         else {
                             print("Failed to parse json")
+                            completion(.failure(ApiErrors.failedToParseData))
                             return
                         }
                         let weatherResult = CurrentWeatherData(temp: temp,
@@ -97,6 +98,7 @@ class ApiManager {
                               let description = weatherData[0]["description"] as? String
                         else {
                             print("Failed to parse json")
+                            completion(.failure(ApiErrors.failedToParseData))
                             return
                         }
                         let weatherResult = CurrentWeatherData(temp: temp,
@@ -115,7 +117,7 @@ class ApiManager {
             }
     }
     
-    public func getForecastByCityName(for city: String, completion: @escaping TypedCompletion<ForecastWeather>) {
+    public func getDailyForecastByCityName(for city: String, completion: @escaping TypedCompletion<ForecastWeatherData>) {
         AF.request("\(baseUrl)/forecast", parameters: ["q": city, "units": "metric", "appid": apiKey])
             .validate()
             .responseJSON { dataResponse in
@@ -126,11 +128,40 @@ class ApiManager {
                         print("Response doen't has any data")
                         return
                     }
-                    let jsonDecoder = JSONDecoder()
+                    print(jsonData)
                     do {
-                        let model = try jsonDecoder.decode(ForecastWeather.self, from: jsonData)
-                        print(model)
-                        completion(.success(model))
+                        let json = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+                        guard let parsedData = json as? [String: Any],
+                              let daylist = parsedData["list"] as? [[String: Any]]
+                        else {
+                            print("Failed to parse json")
+                            completion(.failure(ApiErrors.failedToParseData))
+                            return
+                        }
+                        var result = [DailyForecastData]()
+                        for day in daylist {
+                            guard let timestamp = day["dt"] as? Int,
+                                  let mainData = day["main"] as? [String: Any],
+                                  let temp = mainData["temp"] as? Double,
+                                  let humidity = mainData["humidity"] as? Int,
+                                  let windData = day["wind"] as? [String: Any],
+                                  let windSpeed = windData["speed"] as? Double,
+                                  let weatherData = day["weather"] as? [[String: Any]],
+                                  let sky = weatherData[0]["main"] as? String,
+                                  let skyCondition = ESkyCondition(rawValue: sky),
+                                  let description = weatherData[0]["description"] as? String
+                            else {
+                                print("Cannot cast data")
+                                continue
+                            }
+                            result.append(DailyForecastData(timestamp: timestamp,
+                                                            temp: temp,
+                                                            humidity: humidity,
+                                                            wind: windSpeed,
+                                                            sky: skyCondition,
+                                                            description: description))
+                        }
+                        completion(.success(ForecastWeatherData(daylist: result)))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)
@@ -143,7 +174,7 @@ class ApiManager {
             }
     }
     
-    public func getForecastByCoordinates(latitude: String, longtitude: String, completion: @escaping TypedCompletion<ForecastWeather>) {
+    public func getDailyForecastByCoordinates(latitude: String, longtitude: String, completion: @escaping TypedCompletion<ForecastWeatherData>) {
         AF.request("\(baseUrl)/forecast", parameters: ["lat": latitude, "lon": longtitude, "units": "metric", "appid": apiKey])
             .validate()
             .responseJSON { dataResponse in
@@ -154,11 +185,40 @@ class ApiManager {
                         print("Response doen't has any data")
                         return
                     }
-                    let jsonDecoder = JSONDecoder()
+                    print(jsonData)
                     do {
-                        let model = try jsonDecoder.decode(ForecastWeather.self, from: jsonData)
-                        print(model)
-                        completion(.success(model))
+                        let json = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+                        guard let parsedData = json as? [String: Any],
+                              let daylist = parsedData["list"] as? [[String: Any]]
+                        else {
+                            print("Failed to parse json")
+                            completion(.failure(ApiErrors.failedToParseData))
+                            return
+                        }
+                        var result = [DailyForecastData]()
+                        for day in daylist {
+                            guard let timestamp = day["dt"] as? Int,
+                                  let mainData = day["main"] as? [String: Any],
+                                  let temp = mainData["temp"] as? Double,
+                                  let humidity = mainData["humidity"] as? Int,
+                                  let windData = day["wind"] as? [String: Any],
+                                  let windSpeed = windData["speed"] as? Double,
+                                  let weatherData = day["weather"] as? [[String: Any]],
+                                  let sky = weatherData[0]["main"] as? String,
+                                  let skyCondition = ESkyCondition(rawValue: sky),
+                                  let description = weatherData[0]["description"] as? String
+                            else {
+                                print("Cannot cast data")
+                                continue
+                            }
+                            result.append(DailyForecastData(timestamp: timestamp,
+                                                            temp: temp,
+                                                            humidity: humidity,
+                                                            wind: windSpeed,
+                                                            sky: skyCondition,
+                                                            description: description))
+                        }
+                        completion(.success(ForecastWeatherData(daylist: result)))
                     } catch let error {
                         print("Cannot parse json")
                         print(error)

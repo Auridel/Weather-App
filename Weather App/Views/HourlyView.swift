@@ -58,8 +58,11 @@ class HourlyView: UIView {
                             collectionView.rx.items(cellIdentifier: HourlyCollectionViewCell.identifier,
                                                     cellType: HourlyCollectionViewCell.self)) { row, model, cell in
             // TODO: some config logic
-            print(model)
         }.disposed(by: bag)
         hourlyData.onNext(["1","1","1","1","1","1","1","1"])
+    }
+    
+    public func pushHourlyData(_ data: [String]) {
+        hourlyData.onNext(data)
     }
 }
