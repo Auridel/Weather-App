@@ -79,7 +79,7 @@ class SelectedLocationView: UIView {
     
     public func configure(with name: String) {
         DispatchQueue.main.async {
-            self.locationLabel.text = name
+            self.locationLabel.text = name.isEmpty ? "Unknown" : name
             self.layoutSubviews()
         }
     }

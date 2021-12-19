@@ -35,11 +35,17 @@ class Utils {
         case .clear:
             return UIImage(named: "sun")
         case .clouds:
-            return UIImage(named: "cloud_with_sun")
+            return UIImage(named: "clouds")
         case .rain:
-            return UIImage(named: "clouds")
-        default:
-            return UIImage(named: "clouds")
+            return UIImage(named: "rain")
+        case .snow:
+            return UIImage(named: "snow")
+        case .mist:
+            return UIImage(named: "fog")
+        case .drizzle:
+            return UIImage(named: "rain")
+        case .fog:
+            return UIImage(named: "fog")
         }
     }
 }
