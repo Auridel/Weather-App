@@ -131,11 +131,25 @@ class DetailedWeatherViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let forecast):
-                self.forecastView.pushForecastData(forecast.daylist)
+                self.updateForeastViews(with: forecast.daylist)
             case .failure(_):
                 break
             }
             
         })
+    }
+    
+    private func updateForeastViews(with models: [DailyForecastData]) {
+        var dailyData = [DailyForecastData]()
+        var lastTimestamp: TimeInterval = 0
+        for model in models {
+            if (lastTimestamp == 0 || (lastTimestamp + (24 * 60 * 60)) <= model.timestamp) {
+                dailyData.append(model)
+                lastTimestamp = model.timestamp
+            }
+        }
+        let hourlyData = Array(models[..<7])
+        hourlyView.pushHourlyData(hourlyData)
+        forecastView.pushForecastData(dailyData)
     }
 }

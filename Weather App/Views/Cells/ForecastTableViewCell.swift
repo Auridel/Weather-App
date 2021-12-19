@@ -74,7 +74,7 @@ class ForecastTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: DailyForecastData) {
-        dateLabel.text = Utils.formatDateToShortLabel(timestamp: model.timestamp)
+        dateLabel.text = Utils.formatDateToShortLabel(timestamp: model.timestamp, for: .date)
         conditionImageView.image = Utils.getImageByCondition(model.sky)
         tempLabel.text = "\(Int(model.temp))°C"
     }

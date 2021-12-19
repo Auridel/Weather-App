@@ -8,6 +8,11 @@
 import UIKit
 
 class Utils {
+    
+    public enum DateLabel {
+        case date, time
+    }
+    
     private static let dateFormatter = DateFormatter()
     
     public static func getCurrentDateAsHumanString() -> String {
@@ -15,8 +20,13 @@ class Utils {
         return dateFormatter.string(from: Date())
     }
     
-    public static func formatDateToShortLabel(timestamp: TimeInterval) -> String {
-        dateFormatter.dateFormat = "MMM, d"
+    public static func formatDateToShortLabel(timestamp: TimeInterval, for labelType: DateLabel) -> String {
+        switch labelType {
+        case .date:
+            dateFormatter.dateFormat = "MMM, d"
+        case .time:
+            dateFormatter.dateFormat = "HH:mm"
+        }
         return dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))
     }
     

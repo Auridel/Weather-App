@@ -11,7 +11,7 @@ import RxSwift
 
 class HourlyView: UIView {
     
-    private var hourlyData = PublishSubject<[String]>()
+    private var hourlyData = PublishSubject<[DailyForecastData]>()
     
     private let bag = DisposeBag()
     
@@ -56,13 +56,12 @@ class HourlyView: UIView {
     private func bindCollectionView() {
         hourlyData.asObservable().bind(to:
                             collectionView.rx.items(cellIdentifier: HourlyCollectionViewCell.identifier,
-                                                    cellType: HourlyCollectionViewCell.self)) { row, model, cell in
-            // TODO: some config logic
+                                                    cellType: HourlyCollectionViewCell.self)) { _, model, cell in
+            cell.configure(with: model)
         }.disposed(by: bag)
-        hourlyData.onNext(["1","1","1","1","1","1","1","1"])
     }
     
-    public func pushHourlyData(_ data: [String]) {
+    public func pushHourlyData(_ data: [DailyForecastData]) {
         hourlyData.onNext(data)
     }
 }

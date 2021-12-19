@@ -57,6 +57,8 @@ class LocationPickerViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(searchBar)
         view.addSubview(noResultsLabel)
+        
+        searchBar.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {

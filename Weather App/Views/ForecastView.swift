@@ -22,6 +22,7 @@ class ForecastView: UIView {
         tableView.register(ForecastTableViewCell.self,
                            forCellReuseIdentifier: ForecastTableViewCell.identifier)
         tableView.backgroundColor = UIColor.clear
+        tableView.indicatorStyle = .white
         return tableView
     }()
     

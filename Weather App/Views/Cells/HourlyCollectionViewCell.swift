@@ -38,8 +38,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        contentView.backgroundColor = UIColor.clear
-        contentView.backgroundColor = .red
+        contentView.backgroundColor = UIColor.clear
         
         configureSubviews()
     }
@@ -73,7 +72,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
                                  y: 5,
                                  width: contentView.width,
                                  height: 28)
-        conditionImage.frame = CGRect(x: contentView.width - 22,
+        conditionImage.frame = CGRect(x: (contentView.width - 44) / 2,
                                       y: tempLabel.bottom + 20,
                                       width: 44,
                                       height: 44)
@@ -81,5 +80,11 @@ class HourlyCollectionViewCell: UICollectionViewCell {
                                  y: conditionImage.bottom + 20,
                                  width: contentView.width,
                                  height: 28)
+    }
+    
+    public func configure(with model: DailyForecastData) {
+        tempLabel.text = "\(Int(model.temp)) °"
+        conditionImage.image = Utils.getImageByCondition(model.sky)
+        timeLabel.text = Utils.formatDateToShortLabel(timestamp: model.timestamp, for: .time)
     }
 }
