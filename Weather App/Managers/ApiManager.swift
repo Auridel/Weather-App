@@ -50,7 +50,8 @@ class ApiManager {
                               let weatherData = parsedData["weather"] as? [[String: Any]],
                               let stringCondition = weatherData[0]["main"] as? String,
                               let skyCondition = ESkyCondition(rawValue: stringCondition),
-                              let description = weatherData[0]["description"] as? String
+                              let description = weatherData[0]["description"] as? String,
+                              let cityName = parsedData["name"] as? String
                         else {
                             print("Failed to parse json")
                             completion(.failure(ApiErrors.failedToParseData))
@@ -60,7 +61,8 @@ class ApiManager {
                                                                humidity: humidity,
                                                                wind: windSpeed,
                                                                sky: skyCondition,
-                                                               description: description)
+                                                               description: description,
+                                                               cityName: cityName)
                         completion(.success(weatherResult))
                     } catch let error {
                         print(error)
@@ -72,7 +74,7 @@ class ApiManager {
             }
     }
     
-    public func getWeatherByCoordinates(latitude: String, longtitude: String, completion: @escaping TypedCompletion<CurrentWeatherData>) {
+    public func getWeatherByCoordinates(latitude: Double, longtitude: Double, completion: @escaping TypedCompletion<CurrentWeatherData>) {
         AF.request("\(baseUrl)/weather", parameters: ["lat": latitude, "lon": longtitude, "units": "metric", "appid": apiKey])
             .validate().responseJSON { dataResponse in
                 print(dataResponse)
@@ -95,7 +97,8 @@ class ApiManager {
                               let weatherData = parsedData["weather"] as? [[String: Any]],
                               let stringCondition = weatherData[0]["main"] as? String,
                               let skyCondition = ESkyCondition(rawValue: stringCondition),
-                              let description = weatherData[0]["description"] as? String
+                              let description = weatherData[0]["description"] as? String,
+                              let cityName = parsedData["name"] as? String
                         else {
                             print("Failed to parse json")
                             completion(.failure(ApiErrors.failedToParseData))
@@ -105,7 +108,8 @@ class ApiManager {
                                                                humidity: humidity,
                                                                wind: windSpeed,
                                                                sky: skyCondition,
-                                                               description: description)
+                                                               description: description,
+                                                               cityName: cityName)
                         completion(.success(weatherResult))
                     } catch let error {
                         print(error)
@@ -174,7 +178,7 @@ class ApiManager {
             }
     }
     
-    public func getDailyForecastByCoordinates(latitude: String, longtitude: String, completion: @escaping TypedCompletion<ForecastWeatherData>) {
+    public func getDailyForecastByCoordinates(latitude: Double, longtitude: Double, completion: @escaping TypedCompletion<ForecastWeatherData>) {
         AF.request("\(baseUrl)/forecast", parameters: ["lat": latitude, "lon": longtitude, "units": "metric", "appid": apiKey])
             .validate()
             .responseJSON { dataResponse in

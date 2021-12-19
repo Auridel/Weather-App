@@ -38,7 +38,8 @@ class DetailedWeatherViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
         label.textColor = .white
-        label.text = "--"
+        label.text = Utils.formatDateToShortLabel(timestamp: Date().timeIntervalSince1970,
+                                                  for: .date)
         label.textAlignment = .right
         return label
     }()

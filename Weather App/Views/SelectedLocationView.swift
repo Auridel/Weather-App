@@ -64,7 +64,7 @@ class SelectedLocationView: UIView {
         if let text = locationLabel.text {
             var rect: CGRect = locationLabel.frame
             rect.size = (text.size(withAttributes: [NSAttributedString.Key.font: UIFont(name: locationLabel.font.fontName, size: locationLabel.font.pointSize + 4) ?? 16])) as CGSize
-            let maxLabelWidth: CGFloat = self.width - locationImageView.width - 12 - 16 * 4;
+            let maxLabelWidth: CGFloat = self.width - locationImageView.width - 8 - 16 * 4;
             locationLabel.frame = CGRect(x: locationImageView.right + 16,
                                          y: self.height / 2 - 12,
                                          width: rect.width > maxLabelWidth ? maxLabelWidth : rect.width,

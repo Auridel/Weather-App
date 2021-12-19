@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     
     private var selectedCity: String?
     
+    private var userLocation: CLLocationCoordinate2D?
+    
     private let gradientLayer = GradientLayer()
     
     private var selectedLocationView: SelectedLocationView?
@@ -19,6 +21,18 @@ class HomeViewController: UIViewController {
     private let locationManager = CLLocationManager()
     
     private var forecastData: CurrentWeatherData?
+    
+    private let mapButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "map"),
+                        for: .normal)
+        button.imageView?.tintColor = .white
+        button.setTitle("Open Map",
+                        for: .normal)
+        button.setTitleColor(.white,
+                             for: .normal)
+        return button
+    }()
     
     private let currentSkyCondition: UIImageView = {
         let imageView = UIImageView()
@@ -44,6 +58,8 @@ class HomeViewController: UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
         
         StorageManager.shared.getCityData()
+        configureLocationManager()
+        
         configureSubviews()
     }
 
@@ -79,9 +95,14 @@ class HomeViewController: UIViewController {
                                                                    action: #selector(didTapCurrentWeatherWidget))
         currentWeatherView.addGestureRecognizer(tapCurentWeatherWidgetGesture)
         
+        mapButton.addTarget(self,
+                            action: #selector(didTapMapButton),
+                            for: .touchUpInside)
+        
         scrollView.addSubview(selectedLocationView)
         scrollView.addSubview(currentSkyCondition)
         scrollView.addSubview(currentWeatherView)
+        scrollView.addSubview(mapButton)
     }
     
     private func layoutSubviews() {
@@ -98,6 +119,10 @@ class HomeViewController: UIViewController {
                                           y: currentSkyCondition.bottom + 32,
                                           width: scrollView.width - 32,
                                           height: 355)
+        mapButton.frame = CGRect(x: scrollView.width / 2 - 75,
+                                 y: currentWeatherView.bottom + 36,
+                                 width: 150,
+                                 height: 18)
     }
     
     // MARK: Actions
@@ -108,13 +133,20 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func didTapCurrentWeatherWidget() {
-        guard let cityName = selectedCity else {
+        guard let selectedCity = selectedCity else {
             return
         }
         let detailedWeatherVC = DetailedWeatherViewController()
         detailedWeatherVC.modalPresentationStyle = .fullScreen
-        detailedWeatherVC.selectedCity = cityName
+        detailedWeatherVC.selectedCity = selectedCity
         present(detailedWeatherVC, animated: true)
+    }
+    
+    @objc private func didTapMapButton() {
+        let mapVC = MapViewController()
+        mapVC.defaultCoodrinates = userLocation
+        mapVC.delegate = self
+        present(mapVC, animated: true)
     }
     
     // MARK: Common
@@ -125,7 +157,7 @@ class HomeViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
         }
     }
     
@@ -134,12 +166,7 @@ class HomeViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let forecast):
-                self.forecastData = forecast
-                self.changeConditionTo(forecast.sky)
-                self.currentWeatherView.setWeatherConditions(temp: forecast.temp,
-                                                             conditions: forecast.description,
-                                                             wind: forecast.wind,
-                                                             humidity: forecast.humidity)
+                self.applyForecastData(forecast: forecast)
             case .failure(_):
                 print("Failed to update weather")
                 break
@@ -147,12 +174,21 @@ class HomeViewController: UIViewController {
         }
     }
     
-    public func changeConditionTo(_ condition: ESkyCondition) {
+    private func changeConditionTo(_ condition: ESkyCondition) {
         // TODO: fix all cases
         let image = Utils.getImageByCondition(condition)
         DispatchQueue.main.async {
             self.currentSkyCondition.image = image
         }
+    }
+    
+    private func applyForecastData(forecast: CurrentWeatherData) {
+        self.forecastData = forecast
+        self.changeConditionTo(forecast.sky)
+        self.currentWeatherView.setWeatherConditions(temp: forecast.temp,
+                                                     conditions: forecast.description,
+                                                     wind: forecast.wind,
+                                                     humidity: forecast.humidity)
     }
 
 }
@@ -162,10 +198,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locationData: CLLocationCoordinate2D = manager.location?.coordinate else {
+        guard let locationData = locations.first?.coordinate else {
             return
         }
-        print("\(locationData.longitude) \(locationData.latitude)")
+        userLocation = locationData
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to get location \(error)")
     }
 }
 
@@ -181,5 +221,24 @@ extension HomeViewController: LocationPickerViewControllerDelegate {
         StorageManager.shared.setUserSelectedCity(with: Int(model.geonameid))
     }
     
+}
+
+// MARK: Map Delegate
+
+extension HomeViewController: MapViewControllerDelegate {
+    
+    func didSelectLocation(coordinates: CLLocationCoordinate2D) {
+        ApiManager.shared.getWeatherByCoordinates(latitude: coordinates.latitude,
+                                                  longtitude: coordinates.longitude) { [weak self] resultData in
+            guard let self = self else { return }
+            switch resultData{case .success(let forecast):
+                self.applyForecastData(forecast: forecast)
+                self.selectedLocationView?.configure(with: forecast.cityName)
+                self.selectedCity = forecast.cityName
+            case .failure(_):
+                print("Failed to get forecast")
+            }
+        }
+    }
     
 }

@@ -13,6 +13,7 @@ struct CurrentWeatherData {
     let wind: Double
     let sky: ESkyCondition
     let description: String
+    let cityName: String
 }
 
 struct ForecastWeatherData {
